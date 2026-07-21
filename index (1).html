@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My AWS Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0a0e1a;
+      color: #e0e6f0;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(10,14,26,0.95);
+      border-bottom: 1px solid #1e2a3a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { color: #FF9900; font-weight: 700; font-size: 1.3rem; letter-spacing: 1px; }
+    nav ul { list-style: none; display: flex; gap: 30px; }
+    nav ul a { color: #aab8cc; text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+    nav ul a:hover { color: #FF9900; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 100px 20px 80px;
+      background: radial-gradient(ellipse at top, #1a2a4a 0%, #0a0e1a 70%);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,153,0,0.15);
+      border: 1px solid #FF9900;
+      color: #FF9900;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: #FF9900; }
+    .hero p {
+      font-size: 1.15rem;
+      color: #7a90aa;
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .btn {
+      display: inline-block;
+      background: #FF9900;
+      color: #0a0e1a;
+      padding: 13px 34px;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn:hover { background: #e68800; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #FF9900;
+      color: #FF9900;
+      margin-left: 12px;
+    }
+    .btn-outline:hover { background: rgba(255,153,0,0.1); transform: translateY(-2px); }
+
+    /* SERVICES */
+    .services {
+      padding: 80px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      text-align: center;
+      color: #FF9900;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 50px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #111827;
+      border: 1px solid #1e2a3a;
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .card:hover { border-color: #FF9900; transform: translateY(-4px); }
+    .card-icon { font-size: 2rem; margin-bottom: 14px; }
+    .card h3 { font-size: 1.05rem; margin-bottom: 10px; color: #e0e6f0; }
+    .card p { font-size: 0.9rem; color: #7a90aa; line-height: 1.6; }
+
+    /* ABOUT */
+    .about {
+      background: #111827;
+      padding: 80px 60px;
+      border-top: 1px solid #1e2a3a;
+      border-bottom: 1px solid #1e2a3a;
+    }
+    .about-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about h2 { font-size: 2rem; margin-bottom: 16px; }
+    .about p { color: #7a90aa; line-height: 1.8; margin-bottom: 14px; }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-tag {
+      background: rgba(255,153,0,0.12);
+      border: 1px solid rgba(255,153,0,0.3);
+      color: #FF9900;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 80px 60px;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact h2 { font-size: 2rem; margin-bottom: 14px; }
+    .contact p { color: #7a90aa; margin-bottom: 30px; line-height: 1.7; }
+    .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid #1e2a3a;
+      color: #4a5a6a;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 14px 20px; }
+      nav ul { gap: 14px; }
+      .hero h1 { font-size: 2rem; }
+      .services, .about, .contact { padding: 50px 20px; }
+      .about-inner { grid-template-columns: 1fr; gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">☁️ CloudDev</div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="badge">🚀 AWS Certified Cloud Practitioner</div>
+  <h1>Building Scalable Solutions<br>on <span>Amazon Web Services</span></h1>
+  <p>I design and deploy cloud infrastructure using AWS — from serverless applications to auto-scaling web platforms.</p>
+  <a href="#services" class="btn">View My Work</a>
+  <a href="#contact" class="btn btn-outline">Get In Touch</a>
+</section>
+
+<section class="services" id="services">
+  <div class="section-label">What I Build</div>
+  <h2 class="section-title">AWS Projects & Skills</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🖥️</div>
+      <h3>EC2 & Compute</h3>
+      <p>Deploy and manage virtual servers. Configure security groups, key pairs, and instance types for various workloads.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🪣</div>
+      <h3>S3 Storage</h3>
+      <p>Store and serve files globally with S3. Configure static website hosting, versioning, and lifecycle policies.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Lambda Serverless</h3>
+      <p>Build event-driven functions without managing servers. Integrate with S3, API Gateway, and DynamoDB.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔐</div>
+      <h3>IAM Security</h3>
+      <p>Design least-privilege access policies. Manage users, roles, and groups following AWS security best practices.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <h3>VPC Networking</h3>
+      <p>Architect private networks with subnets, route tables, security groups, and internet gateways.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <h3>Auto Scaling</h3>
+      <p>Configure load balancers and auto-scaling groups to keep applications available and cost-efficient.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <h2>About Me</h2>
+      <p>I'm an aspiring AWS Cloud Engineer passionate about building reliable, scalable cloud infrastructure. I hold the AWS Cloud Practitioner certification and have hands-on experience deploying real projects on AWS.</p>
+      <p>I'm currently seeking a cloud internship where I can grow my skills in cloud architecture, DevOps, and infrastructure automation.</p>
+    </div>
+    <div>
+      <h3 style="margin-bottom:16px; color:#FF9900;">Tech Stack</h3>
+      <div class="skills-grid">
+        <span class="skill-tag">AWS EC2</span>
+        <span class="skill-tag">S3</span>
+        <span class="skill-tag">Lambda</span>
+        <span class="skill-tag">IAM</span>
+        <span class="skill-tag">VPC</span>
+        <span class="skill-tag">RDS</span>
+        <span class="skill-tag">CloudFront</span>
+        <span class="skill-tag">API Gateway</span>
+        <span class="skill-tag">DynamoDB</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Let's Connect</h2>
+  <p>I'm actively looking for AWS internship opportunities. If you're hiring or want to collaborate, feel free to reach out!</p>
+  <div class="contact-links">
+    <a href="mailto:devthacker12345@email.com" class="btn">📧 Email Me</a>
+    <a href="https://www.linkedin.com/in/dev-thacker77" class="btn btn-outline">💼 LinkedIn</a>
+    <a href="https://github.com/devthacker07" class="btn btn-outline">🐙 GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>Hosted on AWS S3 + CloudFront &nbsp;|&nbsp; Built by Dev &nbsp;|&nbsp; © 2026</p>
+</footer>
+
+</body>
+</html>
